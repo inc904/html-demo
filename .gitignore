@@ -2,6 +2,7 @@
 node_modules
 /dist
 
+Desktop.ini
 
 # local env files
 .env.local
