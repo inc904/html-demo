@@ -15,12 +15,22 @@
     <option value="2">2</option>
     <option value="3">3</option>
   </select>
+  <button>Change Value</button>
   <script>
-    let a = $('select[name="slt"]').val()
-    console.log(a)
+    function logVal() {
+      let a = $('select[name="slt"]').val()
+      console.log(a)
 
-    let b = $("select option:selected").val()
-    console.log(b)
+      let b = $("select option:selected").val()
+      console.log(b)
+    }
+    logVal()
+
+    document.querySelector('button').onclick = function () {
+      // 可以通过属性选择器、jq 的 eq 索引选择器等 选择 对应的 option 后，设置 selected 选中。
+      $('select[name="slt"] option[value=2]').prop('selected', true)
+      logVal(0)
+    }
   </script>
 </body>
 
