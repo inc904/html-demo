@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>insertAdjacentHTML</title>
+</head>
+
+<body>
+  <div>
+    <h2>insertAdjacentHTML语法：</h2>
+    <p>element.insertAdjacentHTML(position, text);</p>
+    <div class="content">Lorem, ipsum dolor.</div>
+    <script>
+      let message = "Vue"
+      let _html = `<p>hello, ${message}</p>`
+      document.querySelector(".content").insertAdjacentHTML("beforeEnd", _html);
+    </script>
+  </div>
+</body>
+
+</html>

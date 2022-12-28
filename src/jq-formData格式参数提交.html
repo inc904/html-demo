@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form表单数据处理</title>
+  </head>
+  <body>
+    <style></style>
+    <script src="../assets/js/jquery-3.6.2.js"></script>
+    <form id="myForm" onclick="return false">
+      <label for="username">
+        用户名：<input type="text" name="username" value="Jack" />
+      </label>
+      <br />
+      <label for="password">
+        密 &nbsp; 码：<input type="text" name="password" value="admin123" />
+      </label>
+    </form>
+    <script>
+      let username = $('input[name="username"]').val();
+      let pwd = $('input[name="password"]').val();
+      console.log({ username, pwd });
+
+      let myForm = document.querySelector("#myForm");
+      let formData1 = new FormData(myForm);
+
+      formData1.forEach((v, k) => {
+        console.log(v, ":", k);
+      });
+
+      // 生成 FormData形式的值
+      let formData = new FormData();
+      formData.append("c", "login");
+      formData.append("username", username);
+      formData.append("password", pwd);
+      formData.append("client", "android");
+      console.log({ formData });
+
+      // 查看 FromData 形式数据的值
+      formData.forEach((v, k) => {
+        console.log(v, ":", k);
+      });
+
+
+      /*
+      - 判断是否存在某条数据   formData.has(key),存在返回true，不存在返回false。
+      - 删除数据   formData.delete(key)
+      - 设置/修改数据   formData.set(key,value)如果key不存在则新增一条数据，如果存在，则会修改对应的value值。
+      */
+
+      let post_data = { username, pwd };
+      let _url = "http://example.com/script.php";
+
+      // 参数为object形式
+      $.ajax({
+        method: "post",
+        url: _url,
+        data: post_data, // 自动将 object 形式 转换成 FormData
+        success: function () {},
+      });
+      // 参数为 FormData 形式
+      let fd = new FormData();
+      // fd.append("username", username);
+      // fd.append("pwd", pwd);
+      console.log(fd);
+
+      for (let key in post_data) {
+        fd.append(key, post_data[key]); //传参数
+      }
+
+      fetch(_url, {
+        method: "post",
+        body: fd, // 通过body 传递 FormData 形式的参数
+      });
+
+      fetch(_url, {
+        method: "get", // 无 payload
+      });
+    </script>
+  </body>
+</html>

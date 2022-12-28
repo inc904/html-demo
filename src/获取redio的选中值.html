@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../assets/js/jquery-3.6.2.js"></script>
+
+  <input type="radio" name="hobby" value="1" id="hh" checked>
+  <label for="hh">篮球</label>
+  <input type="radio" name="hobby" value="2" id="jj">
+  <label for="jj">足球</label>
+  <br><br>
+  <button onclick="setValue1()">Set - 1</button></button>
+  <button onclick="setValue2()">Set - 2</button></button>
+  <br><br>
+  <button onclick="logValue()">log1 </button></button>
+  <button onclick="logValue2()">log2 </button></button>
+  <script>
+    $('input[name="hobby"]').change(function () {
+      let a = $('input[name="hobby"]:checked').val()
+      console.log('a', a)
+    })
+
+    // function setValue1() {
+    //   let a = $('input[name="hobby"][value="1"]').prop('checked', 'checked')
+    // }
+    function setValue1() {
+      // 通过 prop 更改 radio 的选中值，并不会起因 jquery-change 事件，需要在后面手动触发一下 change()
+      let a = $('input[name="hobby"][value="1"]').prop('checked', 'checked').change()
+    }
+    function setValue2() {
+      let a = $('input[name="hobby"][value="2"]').prop('checked', 'checked').change()
+    }
+
+    /*  现象：
+      1. 使用 attr 设置 checked，会使得 两个 input （DOM）上都会有  checked="checked"，经过几次后，无法正确 获取 checked 选项。
+      2. 使用 prop 设置 checked，不会在 任何 input（DOM） 上展示 checked 值，但可以正确获取 checked 选项。
+    */
+
+    /*  原因：
+      1. attr 方法只要用于处理自定义的DOM属性。
+      2. prop 方法主要处理本身就带有的故有属性。
+      这里 checked 是 radio 的自带属性，所以应该使用 prop。
+      ## W3C标准里说明的属性，或者说在IDE里能够智能提示出的属性，这些都是固有属性。
+      ## html元素自定义（本身没有的）的属性则用attr()
+      3. jQuery中，具有 true 和 false 两个属性的属性，如 checked, selected 或者 disabled 使用prop()，其他的使用 attr()
+    */
+
+    function logValue() {
+      // 标注 :checked 属性，来正确的获取 radio 的选中值
+      let a = $('input[name="hobby"]:checked').val()
+      console.log('a', a)
+    }
+    function logValue2() {
+      // 无法正确获取
+      let a = $('input[name="hobby"]').val()
+      console.log('a', a)
+    }
+  </script>
+</body>
+
+</html>
