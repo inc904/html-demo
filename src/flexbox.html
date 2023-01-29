@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox</title>
+</head>
+
+<body>
+  <style>
+    body {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    form input {
+      /* flex: 1 1 10ch; */
+      margin: .5rem;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 10ch;
+    }
+
+    input[type="email"] {
+      flex: 3 1 30ch;
+    }
+
+    input {
+      border: none;
+      background: hsl(0 0% 93%);
+      border-radius: .25rem;
+      padding: .75rem 1rem;
+    }
+
+    input[type="submit"] {
+      background: hotpink;
+      color: white;
+      box-shadow: 0 .75rem .5rem -.5rem hsl(0 50% 80%);
+    }
+
+  </style>
+
+  <form>
+    <input type="text" placeholder="Name">
+    <input type="email" placeholder="Email Address">
+    <input type="submit" value="Subscribe">
+  </form>
+
+  <style>
+    .box {
+      display: flex;
+      padding: 10px;
+      border: 2px solid #ccc;
+      flex-wrap: wrap;
+    }
+
+    .item {
+      height: 50px;
+      background-color: aquamarine;
+      margin: 10px;
+      flex-grow: 2;
+      flex-basis: 100px;
+
+    }
+
+    .item1 {
+      flex-grow: 3;
+    }
+
+    .iem2 {
+      flex-basis: 200px;
+    }
+
+  </style>
+  <div class="box">
+    <div class="item item1"></div>
+    <div class="item iem2"></div>
+    <div class="item"></div>
+  </div>
+  <script>
+    var obj = {}
+    console.log(obj)
+    obj.foo = 'bar'
+    console.log(obj)
+  </script>
+
+  <style>
+    .box {
+      display: flex;
+      justify-content: space-around;
+    }
+    .box div{
+      width: 100px;
+      background-color: #ccc;
+    }
+  </style>
+  <div class="box">
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+  </div>
+
+</body>
+
+</html>

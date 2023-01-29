@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.js"></script> -->
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.0.0.js"
+      integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="
+      crossorigin="anonymous"
+    ></script> -->
+
+    <!-- <script
+      src="https://code.jquery.com/jquery-2.2.4.js"
+      integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+      crossorigin="anonymous"
+    ></script> -->
+
+    <script
+      src="https://code.jquery.com/jquery-1.11.3.js"
+      integrity="sha256-IGWuzKD7mwVnNY01LtXxq3L84Tm/RJtNCYBfXZw3Je0="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div id="msg"></div>
+    <script>
+      /*
+    - 在jQuery 1.5版本中引进方法，分别是 jqXHR.success()、jqXHR.error()、jqXHR.complete()。该方法在jQuery 1.8 版本中已不赞成使用。
+    - 在jQuery 1.6版本中新增方法，分别是 jqXHR.done()、jqXHR.fail()、jqXHR.always()。
+    - 在jQuery 3.0版本删除了1.5版本引进的方法，保留了1.6版本中新增的方法。
+    - 照上述3点来看，在版本 1.6 ~ 2.2 中 以上两个版本引进的方法是可以同时使用的。
+    */
+
+      let url =
+        "https://v2.jinrishici.com/one.json?client=browser-sdk/1.2&X-User-Token=qogDZbYJ9g6oDvayIDtA2EmkqGlpzCAO";
+      // basic
+      let basic = $.ajax({
+        url,
+        method: "get",
+        success: function () {
+          console.log("666");
+        },
+      });
+
+      basic.done(() => {
+        console.log("done:", "hello!");
+      });
+
+      $.ajax(url + "cccc", {
+        method: "get",
+        success: function () {
+          console.log("666");
+        },
+        error: function (error) {
+          console.log("error!", error);
+        },
+      });
+      // .then
+      $.ajax(url, {
+        method: "get",
+      }).then((res) => console.log("res", res));
+      // .get
+      $.get(url).then((res) => console.log("res", res));
+
+      // 无效
+      $("#msg").ajaxSend(function (evt, request, settings) {
+        console.log("123");
+        $(this).append("<li>开始请求: " + settings.url + "</li>");
+      });
+    </script>
+  </body>
+</html>

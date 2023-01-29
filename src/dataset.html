@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test" data-my_age="18">One Person</div>
+  <script>
+    // 原生 js 进行自定义属性操作
+    test.setAttribute('nickname', 'Jack')
+    console.log('nickname', test.getAttribute('nickname'))
+
+    // 获取
+    let age = test.dataset.my_age
+    console.log(age)
+    // 设置
+    test.dataset.s_number = '9501'
+    // 获取全部
+    console.log('dataset:', test.dataset)
+
+
+
+    let score = test.createAttribute('score')
+    score.nodeValue = '180'
+  </script>
+</body>
+
+</html>
